@@ -1,10 +1,14 @@
 const reviewModels = require('../models/reviewModels');
+const { Op } = require('sequelize');
 
 exports.getReview = (req, res, next) => {
-    reviewModels.findAll()
-    .then(stock => {
-      res.json({ stock });
-      console.log(stock);
+  const searchCompName = req.query.search; 
+    reviewModels.findAll({where: {compName :{
+      [Op.eq]: searchCompName
+    }}} )
+    .then(review => {
+      res.json({ review });
+      console.log(review);
     })
     .catch(err => {
       console.error(err);

@@ -8,7 +8,6 @@ function setVal(val){
 }
 
 var myForm = document.getElementById('my-form');
-var localStorageDataList = document.getElementById("localStorageData");
 
 myForm.addEventListener('submit', addReview);
 

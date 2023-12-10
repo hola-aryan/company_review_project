@@ -14,7 +14,7 @@ const router = express.Router();
 router.post('/reviewsController/add-review', reviewsController.postAddReview);
 
 //  Route to get all the Expenses
-router.get('/reviewsController/get-stock', reviewsController.getReview);
+router.get('/reviewsController/get-reviews', reviewsController.getReview);
 
 
 // router.delete('/Expense/delete-Expense/:id', expenseController.deleteExpenses);

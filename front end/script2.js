@@ -1,10 +1,13 @@
 const searchCompName = document.getElementById('searchCompName');
+console.log("Script 2 running");
+const localStorageDataList = document.getElementById('localStorageData');
+const myForm2 = document.getElementById('my-form-2');
 
-const myForm = document.getElementById('my-form-2');
-
-myForm.addEventListener('submit', searchReview);
+myForm2.addEventListener('submit', searchReview);
 
 function searchReview(e) {
+console.log("search function running");
+
   e.preventDefault();
 
   // Get user input values
@@ -17,25 +20,31 @@ function searchReview(e) {
   }
  
   localStorageDataList.innerHTML = ""; // Clear previous data
-    axios.get('http://localhost:3000/stockTracker/get-stock')
+  axios.get(`http://localhost:3000/reviewsController/get-reviews?search=${searchCompNames}`)
     .then(res => {
       console.log(res);
-      console.log(res.data.stock[2]);
-        for (let i = 0; i < res.data.stock.length; i++) {
-          showAllUsers(res.data.stock[i]);
+      let avgrating = 0;
+
+        for (let i = 0; i < res.data.review.length; i++) {
+          showAllUsers(res.data.review[i]);
+          avgrating += res.data.review[i].rating;
         }
+        avgrating/=res.data.review.length;
+        showAvgRating(avgrating+"★");
     })
     .catch(err => console.log("Error fetching user data in window add event listener"))
-
 }
 
 function showAllUsers(print) {
+    // Show all users running
+    const content = document.createElement("h3");
+    content.textContent = print.compName+" "+ print.pros+" "+ print.cons;
+    // tableDataBuy.addEventListener('click', () => deleteElement(print.id));
+    localStorageDataList.appendChild(content);
+  }
+function showAvgRating(print){
+    const content = document.createElement("h3");
+    content.textContent = print;
+    localStorageDataList.appendChild(content);
     
-        const content = document.createElement("td");
-    
-        content.textContent = print;
-    
-        // tableDataBuy.addEventListener('click', () => deleteElement(print.id));
-    
-        localStorageDataList.appendChild(content);
-    }
+}
