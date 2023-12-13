@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table.GeneratedTable {
+        width: 100%;
+        background-color: #ffffff;
+        border-collapse: collapse;
+        border-width: 2px;
+        border-color: #ffcc00;
+        border-style: solid;
+        color: #000000;
+        }
+        
+        table.GeneratedTable td, table.GeneratedTable th {
+        border-width: 2px;
+        border-color: #ffcc00;
+        border-style: solid;
+        padding: 3px;
+        }
+        
+        table.GeneratedTable thead {
+        background-color: #ffcc00;
+        }
+    </style>
+    
+</head>
+<body>
+    <form id="my-form">
+         <input type="text" id="compName" name="compName" placeholder="Company Name"><br>  
+         <input type="text" id="pros" name="pros" placeholder="Pros"><br>
+         <input type="text" id="cons" name="cons" placeholder="Cons"><br>
+         <span onclick="setVal(1)" class="star">★</span>
+         <span onclick="setVal(2)" class="star">★</span>
+         <span onclick="setVal(3)" class="star">★</span>
+         <span onclick="setVal(4)" class="star">★</span>
+         <span onclick="setVal(5)" class="star">★</span><br>
+         <button type="submit">Submit Review</button>  
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form id="my-form-2">
+         <input type="text" id="searchCompName" name="searchCompName" placeholder="Search Company Name"><br>  
+         <button type="submit">Search</button>  
+    </form>
+    <div id="localStorageData"></div>
+
+    </div>
+          
+      </table>
+      <script src="script.js"></script>
+      <script src="script2.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>

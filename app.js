@@ -11,16 +11,18 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json()); // Add JSON body parsing middleware
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 const reviewsRoutes = require('./routes/reviewsRoutes');
+
+app.use(express.static(path.join(__dirname, 'frontend')));
 
 app.use('/', reviewsRoutes);
 
 // Add a route for testing server status
 app.get('/', (req, res) => {
-  res.send('Server is running.');
+  const indexPath = path.join(__dirname, './frontend/index.html');
+  res.sendFile(indexPath);
 });
 
 // Database synchronization
@@ -28,9 +30,9 @@ sequelize.sync()
   .then(() => {
     console.log('Database synchronized.');
     // Start the server after the database syncs successfully
-    app.listen(3000, () => {
-      console.log('Server is running on port 3000');
-    });
+    app.listen(2500, () => {
+      console.log('Server is running on port 2500');
+    });    
   })
   .catch(err => {
     console.error('Error syncing database:', err);
